@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/WolveyWare/Scenes/Main Menu.unity
+    guid: c076f1cbb293b624f86382e313ee0b4a
+  - enabled: 1
+    path: Assets/Defend The Oreos/Defend The Oreos.unity
+    guid: 0e35c005a35bdc0498ef3627758310c8
+  - enabled: 1
+    path: Assets/Strike Gold/Strike Gold.unity
+    guid: dab6d44b3ca5f374e8e1b422bbabbcf7
+  m_configObjects: {}

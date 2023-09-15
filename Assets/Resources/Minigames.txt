@@ -1,0 +1,10 @@
+Minigame
+    - Name: Defend the Oreos
+    - Scene: Defend The Oreos
+    - Credits: 
+        - Nikhil Ghosh
+Minigame
+    - Name: Strike Gold
+    - Scene: Strike Gold
+    - Credits: 
+        - Nikhil Ghosh
