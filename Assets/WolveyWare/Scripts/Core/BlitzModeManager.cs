@@ -60,7 +60,7 @@ public class BlitzModeManager : ModeManager
                 //SceneManager.UnloadSceneAsync(1);
             }
 
-            Time.timeScale *= 2f;
+            Time.timeScale *= 1.25f;
         }
 
         
