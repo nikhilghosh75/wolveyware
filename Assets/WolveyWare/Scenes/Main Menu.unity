@@ -2853,7 +2853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameTime: 8
-  startingLives: 1
+  startingLives: 3
 --- !u!4 &2033880110
 Transform:
   m_ObjectHideFlags: 0

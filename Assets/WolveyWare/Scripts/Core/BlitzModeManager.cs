@@ -23,23 +23,47 @@ public class BlitzModeManager : ModeManager
 
     IEnumerator BlitzMode()
     {
-        int[] sceneIndices = PermutationUtil.Shuffle(PermutationUtil.IntArrayFromTo(1, SceneManager.sceneCountInBuildSettings));
+        int[] sceneIndices = PermutationUtil.Shuffle(PermutationUtil.IntArrayFromTo(2, SceneManager.sceneCountInBuildSettings));
+        
+        DoTransition();
+        yield return new WaitForSeconds(8 * 60f / ScoreTracker.bpm);
+        //SceneManager.UnloadSceneAsync(1);
+
+
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        for(int i = 0; i < sceneIndices.Length; i++)
+        for(int speedBlock = 0; speedBlock < 4; speedBlock++)
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndices[i]);
-            operation.allowSceneActivation = false;
+            for (int i = 0; i < sceneIndices.Length; i++)
+            {
+                AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndices[i]);
+                operation.allowSceneActivation = false;
 
-            yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.5f);
 
-            operation.allowSceneActivation = true;
-            SceneManager.UnloadSceneAsync(currentSceneIndex);
-            currentSceneIndex = sceneIndices[i];
+                operation.allowSceneActivation = true;
 
-            yield return new WaitForSeconds(minigameTime);
 
-            EndCurrentMinigame();
+                //SceneManager.UnloadSceneAsync(currentSceneIndex);
+
+
+
+                currentSceneIndex = sceneIndices[i];
+
+                yield return new WaitForSeconds(minigameTime);
+
+                EndCurrentMinigame();
+
+                DoTransition();
+
+                yield return new WaitForSeconds(8 * 60f / ScoreTracker.bpm);
+
+                //SceneManager.UnloadSceneAsync(1);
+            }
+
+            Time.timeScale *= 2f;
         }
+
+        
     }
 
     public override void StartMode()
@@ -67,5 +91,15 @@ public class BlitzModeManager : ModeManager
     public override void OnModeEnded(EndModeReason reason)
     {
         StopCoroutine(blitzModeCoroutine);
+    }
+
+    public void DoTransition()
+    {
+
+        
+        SceneManager.LoadSceneAsync(1);
+
+
+
     }
 }

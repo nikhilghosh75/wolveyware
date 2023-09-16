@@ -19,9 +19,22 @@ public class PlayerMovement : MonoBehaviour
     int numJumps;
     float lastJumpTime;
 
+    [SerializeField] bool grounded;
+
+    bool APressed;
+    bool DPressed;
+    bool WPressed;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        APressed = Input.GetKey(KeyCode.A);
+        DPressed = Input.GetKey(KeyCode.D);
+        WPressed = Input.GetKey(KeyCode.W);
     }
 
     void FixedUpdate()
@@ -32,21 +45,23 @@ public class PlayerMovement : MonoBehaviour
             numJumps = 0;
 
         float speed = isInAir ? playerAirSpeed : playerGroundSpeed;
-        if (Input.GetKey(KeyCode.A))
+        if (APressed)
             rb.velocity = new Vector2(-speed, rb.velocity.y);
-        else if (Input.GetKey(KeyCode.D))
+        else if (DPressed)
             rb.velocity = new Vector2(speed, rb.velocity.y);
         else
             rb.velocity = new Vector2(0, rb.velocity.y);
 
         float timeSinceLastJump = Time.time - lastJumpTime;
-        if (Input.GetKeyDown(KeyCode.W) && timeSinceLastJump > playerDoubleJumpBufferTime)
+        if (WPressed && timeSinceLastJump > playerDoubleJumpBufferTime)
         {
             if (!isInAir)
                 Jump();
             else if (canDoubleJump && numJumps < 2)
                 Jump();
         }
+
+        grounded = !isInAir;
     }
 
     public bool IsInAir()

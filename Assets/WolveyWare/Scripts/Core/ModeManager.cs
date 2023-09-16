@@ -34,8 +34,16 @@ public abstract class ModeManager : MonoBehaviour
     public void EndCurrentMinigame()
     {
         if (MinigameManager.Current.HasSucceeded())
+        {
             OnSuccess(MinigameManager.Current);
+            ScoreTracker.lastResult = ScoreTracker.ScoreTrackerResult.success;
+        }
+
         else
+        {
             OnFailure(MinigameManager.Current);
+            ScoreTracker.lastResult = ScoreTracker.ScoreTrackerResult.failure;
+        }
+            
     }
 }
